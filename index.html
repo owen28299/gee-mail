@@ -1,18 +1,120 @@
+<!DOCTYPE html>
+
+<title>Gee-Mail - Owen Yang</title>
+
 <html>
 	<head>
-		<script src="js/mail-generator.js"></script>
+		
+        <script src="js/mail-generator.js"></script>
 		<link href="css/style.css" rel="stylesheet" media="screen">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    
     <script>
-      window.onload = function(){
-        // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
-        // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
+    window.onload = function(){
+      // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
+      // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
+
+      	//generates existing emails
+        var counter = 0;
+        var existingEmails = window.geemails.length;
+
+        for (i = 0; i < existingEmails; i++) {
+
+            var newMessage = window.geemails[i];
+            appendMessage(newMessage);
+
+        };
+
+
         
-      };
+ 
+        //This function appends the date, subject and sender onto a new email row, below the previous one
+        function appendMessage () {
+                
+        		var newMessage = getNewMessage();
+
+                var date = newMessage.date;
+                var sender = newMessage.sender;
+                var subject = newMessage.subject;
+                var body = newMessage.body;
+
+                
+                counter = counter + 1
+                
+                //Appends to the previously received email.
+                $('.email-container').append(
+                    
+                    '<div> &nbsp </div>' + 
+                
+                    '<div class="email-row row-highlight">' +
+                
+                        '<div class="col-md-4 generated-row">' + '<a id="' + (-1 * counter) +'" href="#">'  + date + '</a>' + '</div>' +
+                        '<div class="col-md-4 generated-row">'  + '<a id="' + (-1 * counter) +'" href="#">' + subject + '</a>' + '</div>' +
+                        '<div class="col-md-4 generated-row">'  + '<a id="' + (-1 * counter) +'" href="#">' + sender + '</a>' + '</div>' +  
+
+                    '</div>' +
+
+                    '<div class="email-row">' +
+                        
+                        '<div class="col-md-12 body-text" id="' + counter + '">'  + body + '</div>' + 
+
+                    '</div>' +
+
+                    '<div> &nbsp </div>'
+                
+                )
+
+              
+                document.getElementById("inbox-counter").innerHTML = counter;
+                
+                
+                $('#' + counter).hide();
+
+                $('a').click(function(event){
+                    $('#' + event.target.id * - 1).toggle();
+                });
+
+                
+                
+        }   
+
+		setInterval(appendMessage,1000);
+
+       
+	}	
+
     </script>
 	</head>
+
 	<body>
-		<div class="container" id="main">
-			Build Me!
+
+		<div class="header-box">
+			<h1 class="text-center" id="headline">Welcome to Gee-Mail</h1>
+			<h2 class="text-center" id="tagline">Your Personal Inbox</h2>
 		</div>
+
+	<div class="email-counter">
+        <div class="row">
+            <div class="col-xs-2 text-center"><p>Number of Emails:</p></div>
+		    <div class="col-xs-1"><p id="inbox-counter"></p></div>
+            <p style="color: green">Click on the Date, Subject, or Sender of each email to show/hide the message Body. (You may need to click a few times)</p>
+        </div>
+
+	</div>
+
+
+
+	<div class="email-container">
+		<div class = "col-md-4"><h4>Date</h4></div>
+		<div class = "col-md-4"><h4>Subject</h4></div>
+		<div class = "col-md-4"><h4>Sender</h4></div>			
+	</div>
+
+
 	</body>
+
 </html>

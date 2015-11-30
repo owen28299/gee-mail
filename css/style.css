@@ -1,0 +1,55 @@
+.header-box {
+	background-image: url("http://www.f-covers.com/cover/autumn-trees-facebook-cover-timeline-banner-for-fb.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+	height: 200px;
+	margin-bottom: 0px;
+}
+
+#headline {
+	color: red;
+	font-size: 75px;
+	background-color: #00BFFF;
+	opacity: 0.7;
+	font-family: 'Lobster', cursive;
+	margin-bottom: 5px;
+}
+
+#tagline {
+	color: red;
+	font-size: 30px;
+	background-color: #00BFFF;
+	opacity: 0.7;
+	font-family: 'Lobster', cursive;
+	margin-bottom: 5px;
+}
+
+.email-counter {
+	font-size: 25px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	color: red;
+	border: black;
+}
+
+.generated-row {
+	font-weight: bold;
+}
+
+.row-highlight:hover { 
+    background-color: yellow;
+}
+
+a:hover { 
+    background-color: yellow;
+}
+
+h4 {
+	text-decoration: underline;
+}
+
+#inbox-counter {
+	color: blue;
+}
